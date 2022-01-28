@@ -1,0 +1,36 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.darkBg {
+  background-color: #212121;
+}
+
+.show-password {
+  margin-bottom: 10px;
+  vertical-align: middle;
+  display: flex;
+  margin-bottom: 40px;
+  align-items: center;
+}
+
+.input {
+  height: 40px;
+  margin-bottom: 10px;
+  border: 0.5px solid #616e7c;
+  border-radius: 5px;
+  padding-left: 10px;
+  color: #94a3b8;
+  font-weight: 500;
+  outline: none;
+  background: transparent;
+}
+
+.checkbox {
+  height: 18px;
+  width: 18px;
+  align-self: center;
+}

@@ -1,0 +1,23 @@
+.side-navbar {
+  width: 20%;
+  min-height: 90vh;
+}
+
+.navItemsList {
+  padding-left: 0;
+  list-style: none;
+}
+
+.activeColor {
+  color: #ff0000;
+}
+
+.normal-color {
+  color: #909090;
+}
+
+@media (max-width: 767px) {
+  .side-navbar {
+    display: none;
+  }
+}

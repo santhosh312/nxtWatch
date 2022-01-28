@@ -1,0 +1,53 @@
+.video-card-container {
+  display: flex;
+  flex-direction: column;
+  width: 32%;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 767px) {
+  .video-card-container {
+    width: 49%;
+  }
+}
+
+.video-info {
+  display: flex;
+}
+
+.video-card-left {
+  padding-top: 10px;
+}
+
+.video-card-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.channel-date-views {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-views {
+  display: flex;
+}
+
+.channel-icon {
+  width: 40px;
+}
+
+.video-title {
+  margin: 0px;
+}
+
+@media (max-width: 576px) {
+  .video-card-container {
+    width: 100%;
+  }
+
+  .channel-date-views {
+    display: flex;
+    flex-direction: row;
+  }
+}

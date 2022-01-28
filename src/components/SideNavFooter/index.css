@@ -1,0 +1,12 @@
+.social-icon {
+  width: 36px;
+  margin-right: 10px;
+}
+
+.sidenav-footer-container {
+  padding: 20px;
+}
+
+.social-buttons-container {
+  display: flex;
+}

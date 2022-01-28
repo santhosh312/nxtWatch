@@ -1,0 +1,10 @@
+.active-icon {
+  color: #ff0000;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}

@@ -1,0 +1,17 @@
+.fail-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fail-image {
+  width: 50%;
+}
+
+@media (max-width: 576px) {
+  .fail-image {
+    width: 80%;
+  }
+}
