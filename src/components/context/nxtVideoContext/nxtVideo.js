@@ -1,8 +1,10 @@
 import React from 'react'
 
 const nxtWatchContext = React.createContext({
-  isDark: false,
+  isdark: false,
   showBanner: true,
+  savedVideosList: [],
+  saveVideo: () => {},
   changeTheme: () => {},
 })
 

@@ -1,4 +1,5 @@
-import {differenceInYears} from 'date-fns'
+import {formatDistanceToNow} from 'date-fns'
+import {Link} from 'react-router-dom'
 import {VideoTitle, ChannelName} from '../../styledComponents'
 
 import nxtWatchContext from '../context/nxtVideoContext/nxtVideo'
@@ -7,25 +8,29 @@ import './index.css'
 function VideoItemCard(props) {
   const {details} = props
   const {id, title, thumbnailUrl, viewCount, channel, publishedAt} = details
-  const dateDiff = differenceInYears(new Date(), new Date(publishedAt))
+  const dateDiff = formatDistanceToNow(new Date(Date.parse(publishedAt)))
 
   return (
     <nxtWatchContext.Consumer>
       {value => {
-        const {isDark} = value
+        const {isdark} = value
         return (
-          <li className="video-card-container">
-            <img src={thumbnailUrl} alt="channel" />
+          <Link
+            style={{textDecoration: 'none'}}
+            to={`/videos/${id}`}
+            className="video-card-container"
+          >
+            <img src={thumbnailUrl} alt="video thumbnail" />
             <div className="video-info">
               <div className="video-card-left">
                 <img
                   className="channel-icon"
                   src={channel.profile_image_url}
-                  alt="profile"
+                  alt="channel logo"
                 />
               </div>
               <div className="video-card-right">
-                <VideoTitle isDark={isDark} className="video-title">
+                <VideoTitle isdark={isdark} className="video-title">
                   {title}
                 </VideoTitle>
                 <div className="channel-date-views">
@@ -39,7 +44,7 @@ function VideoItemCard(props) {
                 </div>
               </div>
             </div>
-          </li>
+          </Link>
         )
       }}
     </nxtWatchContext.Consumer>

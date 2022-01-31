@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {withRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {HiOutlineLightBulb} from 'react-icons/hi'
 import {FaMoon} from 'react-icons/fa'
 import {FiMenu, FiLogOut} from 'react-icons/fi'
@@ -8,37 +8,44 @@ import Popup from 'reactjs-popup'
 import nxtWatchContext from '../context/nxtVideoContext/nxtVideo'
 import LogoutPopup from '../LogoutPopup'
 
-import {Logo, LogoutButton} from '../../styledComponents'
+import {LogoutButton} from '../../styledComponents'
 import './index.css'
+import MenuPopup from '../MenuPopup'
 
 class Header extends Component {
   render() {
+    const {activeTab} = this.props
     return (
       <nxtWatchContext.Consumer>
         {value => {
-          const {isDark, changeTheme} = value
+          const {isdark, changeTheme} = value
           return (
             <div
-              className={`header-container ${isDark ? 'dark-bg' : 'light-bg'}`}
+              className={`header-container ${isdark ? 'dark-bg' : 'light-bg'}`}
             >
-              {!isDark && (
-                <img
-                  className="website-logo"
-                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                  alt="website logo"
-                />
+              {!isdark && (
+                <Link to="/">
+                  <img
+                    className="website-logo"
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                    alt="website logo"
+                  />
+                </Link>
               )}
-              {isDark && (
-                <img
-                  className="website-logo"
-                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
-                  alt="website logo"
-                />
+              {isdark && (
+                <Link to="/">
+                  <img
+                    className="website-logo"
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
+                    alt="website logo"
+                  />
+                </Link>
               )}
               <ul className="header-menu-lg">
-                {!isDark && (
+                {!isdark && (
                   <li>
                     <button
+                      data-testid="theme"
                       onClick={changeTheme}
                       type="button"
                       className="transparent"
@@ -48,9 +55,10 @@ class Header extends Component {
                   </li>
                 )}
 
-                {isDark && (
+                {isdark && (
                   <li>
                     <button
+                      data-testid="theme"
                       onClick={changeTheme}
                       type="button"
                       className="transparent"
@@ -60,9 +68,21 @@ class Header extends Component {
                   </li>
                 )}
                 <li>
-                  <button type="button" className="transparent">
-                    <FiMenu className={`icon ${isDark ? 'light-color' : ''}`} />
-                  </button>
+                  <Popup
+                    modal
+                    closeOnDocumentClick={false}
+                    trigger={
+                      <button type="button" className="transparent">
+                        <FiMenu
+                          className={`icon ${isdark ? 'light-color' : ''}`}
+                        />
+                      </button>
+                    }
+                  >
+                    {close => (
+                      <MenuPopup closeMenu={close} activeTab={activeTab} />
+                    )}
+                  </Popup>
                 </li>
                 <li>
                   <Popup
@@ -71,21 +91,26 @@ class Header extends Component {
                     trigger={
                       <button type="button" className="transparent">
                         <FiLogOut
-                          className={`icon ${isDark ? 'light-color' : ''}`}
+                          className={`icon ${isdark ? 'light-color' : ''}`}
                         />
                       </button>
                     }
                   >
                     {close => (
-                      <LogoutPopup closeModal={close} isDark={isDark} />
+                      <LogoutPopup
+                        redirectToLogin={this.redirectToLogin}
+                        closeModal={close}
+                        isdark={isdark}
+                      />
                     )}
                   </Popup>
                 </li>
               </ul>
               <ul className="header-menu-sm">
-                {!isDark && (
+                {!isdark && (
                   <li>
                     <button
+                      data-testid="theme"
                       onClick={changeTheme}
                       type="button"
                       className="transparent"
@@ -94,9 +119,10 @@ class Header extends Component {
                     </button>
                   </li>
                 )}
-                {isDark && (
+                {isdark && (
                   <li>
                     <button
+                      data-testid="theme"
                       onClick={changeTheme}
                       type="button"
                       className="transparent"
@@ -114,12 +140,12 @@ class Header extends Component {
                   modal
                   closeOnDocumentClick={false}
                   trigger={
-                    <LogoutButton isDark={isDark} type="button">
+                    <LogoutButton isdark={isdark} type="button">
                       Logout
                     </LogoutButton>
                   }
                 >
-                  {close => <LogoutPopup closeModal={close} isDark={isDark} />}
+                  {close => <LogoutPopup closeModal={close} isdark={isdark} />}
                 </Popup>
               </ul>
             </div>
@@ -130,4 +156,4 @@ class Header extends Component {
   }
 }
 
-export default withRouter(Header)
+export default Header

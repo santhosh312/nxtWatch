@@ -59,29 +59,30 @@ export default class Login extends Component {
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       const {history} = this.props
+      console.log(this.props)
       history.replace('/')
     }
     return (
       <nxtWatchContext.Consumer>
         {value => {
-          const {isDark} = value
-          // console.log(isDark)
+          const {isdark} = value
+          // console.log(isdark)
           return (
-            <div className={`login-container ${isDark ? 'darkBg' : ''}`}>
-              <LoginBox onSubmit={this.onLogin} isDark={isDark}>
-                {!isDark && (
+            <div className={`login-container ${isdark ? 'darkBg' : ''}`}>
+              <LoginBox onSubmit={this.onLogin} isdark={isdark}>
+                {!isdark && (
                   <Logo
                     src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
                     alt="website logo"
                   />
                 )}
-                {isDark && (
+                {isdark && (
                   <Logo
                     src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
                     alt="website logo"
                   />
                 )}
-                <Label htmlFor="username" isDark={isDark}>
+                <Label htmlFor="username" isdark={isdark}>
                   USERNAME
                 </Label>
                 <input
@@ -92,7 +93,7 @@ export default class Login extends Component {
                   className="input"
                   type="text"
                 />
-                <Label htmlFor="password" isDark={isDark}>
+                <Label htmlFor="password" isdark={isdark}>
                   PASSWORD
                 </Label>
                 <input
@@ -110,7 +111,7 @@ export default class Login extends Component {
                     className="checkbox"
                     type="checkbox"
                   />
-                  <CboxLabel isDark={isDark} htmlFor="togglePassword">
+                  <CboxLabel isdark={isdark} htmlFor="togglePassword">
                     Show Password
                   </CboxLabel>
                 </div>

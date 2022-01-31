@@ -1,0 +1,15 @@
+.category-icon {
+  font-size: 30px;
+  color: #ff0000;
+}
+
+.route-icon-container {
+  border-radius: 50%;
+  padding: 10px;
+  margin-right: 20px;
+  background-color: #e2e8f0;
+}
+
+.dark-icon-bg {
+  background-color: #0f0f0f;
+}

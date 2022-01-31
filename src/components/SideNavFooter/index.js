@@ -4,10 +4,10 @@ import {SideFooterText} from '../../styledComponents'
 import './index.css'
 
 export default function SideNavFooter(props) {
-  const {isDark} = props
+  const {isdark} = props
   return (
     <div className="sidenav-footer-container">
-      <SideFooterText isDark={isDark}>CONTACT US</SideFooterText>
+      <SideFooterText isdark={isdark}>CONTACT US</SideFooterText>
       <div className="social-buttons-container">
         <img
           className="social-icon"
@@ -25,7 +25,7 @@ export default function SideNavFooter(props) {
           alt="linked in logo"
         />
       </div>
-      <SideFooterText isDark={isDark}>
+      <SideFooterText isdark={isdark}>
         Enjoy! Now to see your channels and recommendations!
       </SideFooterText>
     </div>

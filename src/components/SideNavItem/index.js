@@ -11,16 +11,16 @@ export default class SideNavItem extends Component {
     return (
       <nxtWatchContext.Consumer>
         {value => {
-          const {isDark} = value
+          const {isdark} = value
           return (
             <>
-              {!isDark && (
+              {!isdark && (
                 <NavItemLight isActive={isActive}>
                   <Icon className={`icon ${isActive && 'active-icon'}`} />
                   <NavItemText isActive={isActive}>{displayText}</NavItemText>
                 </NavItemLight>
               )}
-              {isDark && (
+              {isdark && (
                 <NavItemDark isActive={isActive}>
                   <Icon className={`icon ${isActive && 'active-icon'}`} />
                   <NavItemText isActive={isActive}>{displayText}</NavItemText>

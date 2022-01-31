@@ -7,7 +7,6 @@ import nxtWatchContext from '../context/nxtVideoContext/nxtVideo'
 
 import {
   Banner,
-  Logo,
   SideFooterText,
   SearchVideosContainer,
   SearchContainer,
@@ -29,7 +28,7 @@ const videoListStatus = {
   failure: 'FAILURE',
 }
 
-export default class Home extends Component {
+class Home extends Component {
   state = {
     fetchStatus: videoListStatus.initial,
     videosList: [],
@@ -45,6 +44,10 @@ export default class Home extends Component {
   }
 
   onClickSearchButton = () => {
+    this.homeRouteData()
+  }
+
+  onRetry = () => {
     this.homeRouteData()
   }
 
@@ -72,7 +75,6 @@ export default class Home extends Component {
         viewCount: item.view_count,
       }))
 
-      console.log(updatedData)
       this.setState({
         fetchStatus: videoListStatus.success,
         videosList: updatedData,
@@ -84,20 +86,25 @@ export default class Home extends Component {
 
   render() {
     const {fetchStatus, videosList, searchInput} = this.state
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken === undefined) {
+      const {history} = this.props
+      history.replace('/login')
+    }
 
     return (
       <nxtWatchContext.Consumer>
         {value => {
-          const {isDark, showBanner, closeBanner} = value
+          const {isdark, showBanner, closeBanner} = value
 
           return (
-            <div className="home-container">
-              <Header />
+            <div className="home-container" data-testid="home">
+              <Header activeTab="HOME" />
               <div className="home-content-container">
-                <SideNavbar activeTab="TRENDING" />
+                <SideNavbar activeTab="HOME" />
                 <div className="banner-content-container">
                   {showBanner && (
-                    <Banner>
+                    <Banner data-testid="banner">
                       <button
                         onClick={closeBanner}
                         type="button"
@@ -119,18 +126,19 @@ export default class Home extends Component {
                       </button>
                     </Banner>
                   )}
-                  <SearchVideosContainer isDark={isDark}>
-                    <SearchContainer isDark={isDark}>
+                  <SearchVideosContainer isdark={isdark}>
+                    <SearchContainer isdark={isdark}>
                       <input
                         value={searchInput}
                         onChange={this.onChangeSearchInput}
                         placeholder="Search"
-                        className={`search-bar ${isDark && 'light-color'}`}
+                        className={`search-bar ${isdark && 'light-color'}`}
                         type="search"
                       />
                       <SearchButton
+                        data-testid="searchButton"
                         onClick={this.onClickSearchButton}
-                        isDark={isDark}
+                        isdark={isdark}
                         className="search-button"
                       >
                         <AiOutlineSearch />
@@ -148,11 +156,15 @@ export default class Home extends Component {
                     </ul>
                     {fetchStatus === videoListStatus.loading && <MyLoader />}
                     {videosList.length === 0 && (
-                      <FailComponent failType="search" />
+                      <FailComponent
+                        failRetry={this.onRetry}
+                        failType="search"
+                      />
                     )}
                     {fetchStatus === videoListStatus.failure && (
                       <FailComponent
-                        failType={`fail${isDark ? 'Dark' : 'Light'}`}
+                        failRetry={this.onRetry}
+                        failType={`fail${isdark ? 'Dark' : 'Light'}`}
                       />
                     )}
                   </SearchVideosContainer>
@@ -165,3 +177,5 @@ export default class Home extends Component {
     )
   }
 }
+
+export default Home

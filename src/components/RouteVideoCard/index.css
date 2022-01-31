@@ -1,0 +1,40 @@
+.route-card-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.route-thumbnail img {
+  width: 100%;
+}
+
+.route-thumbnail {
+  width: 40%;
+}
+
+.info-container {
+  width: 40%;
+}
+
+.views-date {
+  display: flex;
+}
+
+@media (max-width: 576px) {
+  .route-card-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .route-thumbnail {
+    width: 100%;
+  }
+
+  .info-container {
+    width: 100%;
+  }
+
+  .views-channel-date {
+    display: flex;
+  }
+}

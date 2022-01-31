@@ -1,0 +1,28 @@
+.game-card-container {
+  list-style: none;
+  width: 32%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  margin-right: 0.226%;
+}
+
+.game-card-container img {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.game-card-container p {
+  margin: 0;
+}
+
+.game-card-container h1 {
+  margin: 0;
+}
+
+@media (max-width: 576px) {
+  .game-card-container {
+    width: 47%;
+    margin-left: 5px;
+  }
+}

@@ -1,22 +1,22 @@
-import React from 'react'
 import Cookies from 'js-cookie'
-import {Redirect} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import {LogoutPopupBox, FailDescription, Button} from '../../styledComponents'
 
 import './index.css'
 
 function LogoutPopup(props) {
-  const {isDark, closeModal} = props
+  const {isdark, closeModal} = props
 
-  const sessionLogout = () => {
+  const handleLogout = () => {
     Cookies.remove('jwt_token')
-    return <Redirect to="/login" />
+    const {history} = props
+    history.replace('/login')
   }
 
   return (
-    <LogoutPopupBox isDark={isDark}>
-      <FailDescription isDark={isDark}>
-        Are you sure you want to logout?
+    <LogoutPopupBox isdark={isdark}>
+      <FailDescription isdark={isdark}>
+        Are you sure, you want to logout?
       </FailDescription>
       <div className="logout-buttons">
         <Button
@@ -25,19 +25,19 @@ function LogoutPopup(props) {
           color="#94a3b8"
           borderColor="#94a3b8"
         >
-          Close
+          Cancel
         </Button>
         <Button
-          onClick={sessionLogout}
+          onClick={handleLogout}
           bgColor="#3b82f6"
           borderColor="#3b82f6"
           color="#ffffff"
         >
-          Logout
+          Confirm
         </Button>
       </div>
     </LogoutPopupBox>
   )
 }
 
-export default LogoutPopup
+export default withRouter(LogoutPopup)
