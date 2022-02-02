@@ -64,10 +64,12 @@ function FailComponent(props) {
             <img className="fail-image" src={imageUrl} alt={altText} />
             <FailHeading isdark={isdark}>{headText}</FailHeading>
             <FailDescription isdark={isdark}>{descriptionText}</FailDescription>
-            {altText === 'no videos' ||
-              (altText === 'failure view' && (
-                <FailButton onClick={failRetry}>Retry</FailButton>
-              ))}
+            {altText === 'no videos' && (
+              <FailButton onClick={failRetry}>Retry</FailButton>
+            )}
+            {altText === 'failure view' && (
+              <FailButton onClick={failRetry}>Retry</FailButton>
+            )}
           </div>
         )
       }}

@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 import nxtWatchContext from './components/context/nxtVideoContext/nxtVideo'
 
 import Login from './components/Login'
@@ -58,7 +58,8 @@ export default class App extends Component {
             <Route exact path="/gaming" component={Gaming} />
             <Route exact path="/videos/:id" component={VideoItemDetails} />
             <Route exact path="/saved-videos" component={SavedVideos} />
-            <Route component={NotFound} />
+            <Route path="/not-found" component={NotFound} />
+            <Redirect to="/not-found" />
           </Switch>
         </nxtWatchContext.Provider>
       </>

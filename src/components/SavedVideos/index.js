@@ -49,7 +49,7 @@ class SavedVideos extends Component {
                         </>
                       )}
                     </ul>
-                    <ul className="videos-container-small">
+                    {/* <ul className="videos-container-small">
                       {savedVideosList.length !== 0 && (
                         <>
                           {savedVideosList.map(item => (
@@ -57,7 +57,7 @@ class SavedVideos extends Component {
                           ))}
                         </>
                       )}
-                    </ul>
+                    </ul> */}
                     {savedVideosList.length === 0 && (
                       <FailComponent
                         failRetry={this.onRetry}

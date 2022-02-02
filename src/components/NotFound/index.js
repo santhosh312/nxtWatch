@@ -30,7 +30,7 @@ class NotFound extends Component {
             <div className="home-container">
               <Header activeTab="SAVED" />
               <div className="home-content-container">
-                <SideNavbar activeTab="SAVED" />
+                <SideNavbar />
                 <div className="banner-content-container">
                   <TrendingSearchVideosContainer isdark={isdark}>
                     <FailComponent

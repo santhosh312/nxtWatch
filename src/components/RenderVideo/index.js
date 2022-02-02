@@ -114,7 +114,7 @@ class RenderVideo extends Component {
                 <div className="channel-subscribers-description">
                   <img
                     src={videosDetails.channel.profile_image_url}
-                    alt="profile"
+                    alt="channel logo"
                   />
                   <div className="channel-info">
                     <VideoItemTitle isdark={isdark}>
